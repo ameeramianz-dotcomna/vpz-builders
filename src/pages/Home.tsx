@@ -247,7 +247,7 @@ export default function Home() {
       {/* Hero Section (Includes responsive text scaling and wrap-safe cycler) */}
       <section id="home" className="relative h-screen overflow-hidden flex items-center justify-center bg-bg">
         {/* Background HLS Video */}
-        <div className="absolute inset-0 z-0 bg-[#07090A]/90">
+        <div className="absolute inset-0 z-0 bg-bg/90">
           <video 
             ref={heroVideoRef}
             autoPlay 
@@ -257,7 +257,7 @@ export default function Home() {
             className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 opacity-35"
           />
           {/* Subtle Dark Overlay */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-bg/20 z-10" />
           {/* Bottom Gradient Fade */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent z-10" />
         </div>
@@ -542,7 +542,7 @@ export default function Home() {
       <section id="contact" className="relative bg-bg pt-16 sm:pt-20 pb-12 overflow-hidden min-h-[90vh] flex flex-col justify-between">
         
         {/* Background HLS Video (Flipped Vertically) */}
-        <div className="absolute inset-0 z-0 bg-[#07090A]">
+        <div className="absolute inset-0 z-0 bg-bg">
           <video 
             ref={footerVideoRef}
             autoPlay 
@@ -552,7 +552,7 @@ export default function Home() {
             className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-25"
           />
           {/* Heavy Dark Overlay */}
-          <div className="absolute inset-0 bg-black/50 z-10" />
+          <div className="absolute inset-0 bg-bg/75 z-10" />
         </div>
 
         {/* Marquee Text */}

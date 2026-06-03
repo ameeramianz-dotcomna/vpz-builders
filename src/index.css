@@ -2,17 +2,17 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #07090A;
-  --surface: #0E1214;
-  --surface-hover: #141A1D;
+  --bg: #FFFFFF;
+  --surface: #F5F8F9;
+  --surface-hover: #EBF0F2;
   --primary: #00A2A8;
-  --primary-glow: rgba(0, 162, 168, 0.15);
-  --secondary: #4BB8CA;
-  --accent: #FFCF0A;
-  --accent-glow: rgba(255, 207, 10, 0.2);
-  --stroke: #1B2326;
-  --text-primary: #E5ECEF;
-  --muted: #748A91;
+  --primary-glow: rgba(0, 162, 168, 0.08);
+  --secondary: #3598A8;
+  --accent: #D1A200;
+  --accent-glow: rgba(209, 162, 0, 0.12);
+  --stroke: #E1E8EB;
+  --text-primary: #0F1416;
+  --muted: #52676E;
 }
 
 @theme {
