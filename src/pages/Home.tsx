@@ -32,7 +32,6 @@ export default function Home() {
   const [scrollY, setScrollY] = useState(0)
   const [lightboxImage, setLightboxImage] = useState<string | null>(null)
 
-  const heroVideoRef = useRef<HTMLVideoElement>(null)
   const footerVideoRef = useRef<HTMLVideoElement>(null)
   const marqueeRef = useRef<HTMLDivElement>(null)
   
@@ -51,7 +50,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Hls video streams loading
+  // Hls video streams loading (Footer only, hero uses local public video)
   useEffect(() => {
     const loadHls = (video: HTMLVideoElement | null) => {
       if (!video) return
@@ -66,11 +65,9 @@ export default function Home() {
       return null
     }
 
-    const heroHls = loadHls(heroVideoRef.current)
     const footerHls = loadHls(footerVideoRef.current)
 
     return () => {
-      if (heroHls) heroHls.destroy()
       if (footerHls) footerHls.destroy()
     }
   }, [])
@@ -175,20 +172,24 @@ export default function Home() {
 
         if (isEven) {
           tlCard.fromTo(card,
-            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         } else {
           tlCard.fromTo(card,
-            { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         }
       })
 
@@ -205,20 +206,24 @@ export default function Home() {
 
         if (isEven) {
           tlCard.fromTo(card,
-            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         } else {
           tlCard.fromTo(card,
-            { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         }
       })
     })
@@ -271,20 +276,24 @@ export default function Home() {
 
         if (isEven) {
           tlCard.fromTo(card,
-            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         } else {
           tlCard.fromTo(card,
-            { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         }
       })
 
@@ -301,20 +310,24 @@ export default function Home() {
 
         if (isEven) {
           tlCard.fromTo(card,
-            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         } else {
           tlCard.fromTo(card,
-            { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
-            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" }
           )
-          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
-          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.20, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 0.15, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 1.0, rotate: 0, duration: 0.20, ease: "sine.inOut" })
         }
       })
     })
@@ -464,20 +477,20 @@ export default function Home() {
 
       {/* Hero Section (Includes responsive text scaling and wrap-safe cycler) */}
       <section id="home" className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0B0E14]">
-        {/* Background HLS Video */}
-        <div className="absolute inset-0 z-0 bg-[#0B0E14]/90">
+        {/* Background Video (Local looped asset tinted to match theme) */}
+        <div className="absolute inset-0 z-0 bg-[#0B0E14]">
           <video 
-            ref={heroVideoRef}
+            src="/background/IMG_6983.MP4"
             autoPlay 
             muted 
             loop 
             playsInline
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 opacity-35"
+            className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-30 mix-blend-screen"
           />
           {/* Grid Overlay */}
           <div className="absolute inset-0 dark-grid-overlay opacity-50 z-10 pointer-events-none" />
-          {/* Subtle Dark Overlay */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          {/* Theme Tint Overlay matching Sleek Deep Navy Blue background */}
+          <div className="absolute inset-0 bg-[#0B0E14]/65 z-10 pointer-events-none" />
           {/* Bottom Gradient Fade */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0B0E14] to-transparent z-10" />
         </div>
