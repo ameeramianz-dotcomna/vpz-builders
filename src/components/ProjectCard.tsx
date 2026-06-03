@@ -10,7 +10,7 @@ export default function ProjectCard({ project, className = '' }: ProjectCardProp
   return (
     <Link 
       to={`/project/${project.id}`}
-      className={`group relative overflow-hidden bg-surface border border-stroke rounded-3xl block h-80 sm:h-96 transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 ${className}`}
+      className={`project-card-trigger group relative overflow-hidden bg-surface border border-stroke rounded-3xl block h-80 sm:h-96 transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 ${className}`}
     >
       {/* Background Image */}
       <img 

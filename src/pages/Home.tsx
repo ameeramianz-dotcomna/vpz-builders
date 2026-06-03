@@ -128,51 +128,11 @@ export default function Home() {
         pinSpacing: false
       })
 
-      gsap.fromTo(colLeft, 
-        { y: "5%", x: "-15%" },
-        {
-          y: "-35%",
-          x: "15%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        }
-      )
-
-      gsap.fromTo(colRight, 
-        { y: "-15%", x: "15%" },
-        {
-          y: "15%",
-          x: "-15%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        }
-      )
-    })
-
-    // ── Mobile: Opposite scroll parallax columns ──────────────────
-    mm.add("(max-width: 767px)", () => {
-      ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: "bottom bottom",
-        pin: pinned,
-        pinSpacing: false
-      })
-
+      // Vertical column scrolling (Parallax)
       gsap.fromTo(colLeft, 
         { y: "15%" },
         {
-          y: "-20%",
+          y: "-30%",
           ease: "none",
           scrollTrigger: {
             trigger: container,
@@ -196,6 +156,167 @@ export default function Home() {
           }
         }
       )
+
+      // DNA Helix card-level weave animation
+      const leftCards = colLeft.querySelectorAll('.gallery-card')
+      const rightCards = colRight.querySelectorAll('.gallery-card')
+      const wOffset = "38vw"
+
+      leftCards.forEach((card, idx) => {
+        const isEven = idx % 2 === 0
+        const tlCard = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        })
+
+        if (isEven) {
+          tlCard.fromTo(card,
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        } else {
+          tlCard.fromTo(card,
+            { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        }
+      })
+
+      rightCards.forEach((card, idx) => {
+        const isEven = idx % 2 === 0
+        const tlCard = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        })
+
+        if (isEven) {
+          tlCard.fromTo(card,
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        } else {
+          tlCard.fromTo(card,
+            { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        }
+      })
+    })
+
+    // ── Mobile: DNA Helix Scroll Shuffle ──────────────────────────
+    mm.add("(max-width: 767px)", () => {
+      // Columns scroll vertically in opposite directions
+      gsap.fromTo(colLeft,
+        { y: "10%" },
+        {
+          y: "-15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      )
+
+      gsap.fromTo(colRight,
+        { y: "-10%" },
+        {
+          y: "15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      )
+
+      const leftCards = colLeft.querySelectorAll('.gallery-card')
+      const rightCards = colRight.querySelectorAll('.gallery-card')
+      const wOffset = "38vw"
+
+      leftCards.forEach((card, idx) => {
+        const isEven = idx % 2 === 0
+        const tlCard = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        })
+
+        if (isEven) {
+          tlCard.fromTo(card,
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        } else {
+          tlCard.fromTo(card,
+            { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: wOffset, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        }
+      })
+
+      rightCards.forEach((card, idx) => {
+        const isEven = idx % 2 === 0
+        const tlCard = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        })
+
+        if (isEven) {
+          tlCard.fromTo(card,
+            { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        } else {
+          tlCard.fromTo(card,
+            { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0 },
+            { x: `-${parseFloat(wOffset) / 2}vw`, scale: 1.12, zIndex: 30, opacity: 1.0, rotate: 5, duration: 1, ease: "sine.inOut" }
+          )
+          .to(card, { x: "0vw", scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${parseFloat(wOffset) / 2}vw`, scale: 0.88, zIndex: 10, opacity: 0.65, rotate: -5, duration: 1, ease: "sine.inOut" })
+          .to(card, { x: `-${wOffset}`, scale: 1.0, zIndex: 20, opacity: 0.85, rotate: 0, duration: 1, ease: "sine.inOut" })
+        }
+      })
     })
 
     return () => mm.revert()
@@ -216,6 +337,34 @@ export default function Home() {
     return () => {
       animation.kill()
     }
+  }, [])
+
+  // GSAP ScrollTrigger for Selected Works (Project Cards)
+  useEffect(() => {
+    const cards = document.querySelectorAll('.project-card-trigger')
+    if (cards.length === 0) return
+
+    const ctx = gsap.context(() => {
+      cards.forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 50, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 92%",
+              toggleActions: "play none none none"
+            }
+          }
+        )
+      })
+    })
+
+    return () => ctx.revert()
   }, [])
 
   // GSAP Stats counter animation (counts up quickly on scroll)
@@ -510,11 +659,11 @@ export default function Home() {
       </section>
 
       {/* Explorations (Parallax Gallery - Responsive height and flow logic) */}
-      <section id="explorations" ref={parallaxContainerRef} className="relative bg-transparent min-h-[160vh] md:min-h-[300vh] border-t border-stroke/20 py-12 md:py-0">
+      <section id="explorations" ref={parallaxContainerRef} className="relative bg-transparent min-h-fit md:min-h-[300vh] border-t border-stroke/20 py-12 md:py-0">
         
         {/* Layer 1: Pinned Center */}
-        <div ref={pinnedContentRef} className="absolute inset-0 h-screen z-10 flex items-center justify-center pointer-events-none pb-12 md:pb-0">
-          <div className="max-w-xs sm:max-w-md mx-auto px-5 py-6 sm:p-8 text-center space-y-4 sm:space-y-6 select-none md:pointer-events-auto bg-white/70 backdrop-blur-md rounded-3xl border border-stroke/40 shadow-lg md:bg-transparent md:backdrop-blur-none md:border-none md:shadow-none">
+        <div ref={pinnedContentRef} className="relative md:absolute md:inset-0 h-auto md:h-screen z-10 flex items-center justify-center pointer-events-none pb-8 md:pb-0">
+          <div className="max-w-xs sm:max-w-md mx-auto px-5 py-6 sm:p-8 text-center space-y-4 sm:space-y-6 select-none pointer-events-auto bg-white/70 backdrop-blur-md rounded-3xl border border-stroke/40 shadow-lg md:bg-transparent md:backdrop-blur-none md:border-none md:shadow-none">
             <span className="text-[10px] sm:text-xs text-primary uppercase tracking-[0.3em] font-medium font-mono">Gallery Overview</span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-display italic text-text-primary">
               Visual playground
@@ -540,7 +689,7 @@ export default function Home() {
               <div 
                 key={idx}
                 onClick={() => setLightboxImage(img)}
-                className="gallery-card w-full aspect-square max-w-[150px] xs:max-w-[200px] sm:max-w-[260px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative rotate-[-2deg] md:rotate-[-2deg] bg-surface"
+                className="gallery-card w-full aspect-square max-w-[150px] xs:max-w-[200px] sm:max-w-[260px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative bg-surface"
               >
                 <img 
                   src={img} 
@@ -559,7 +708,7 @@ export default function Home() {
               <div 
                 key={idx}
                 onClick={() => setLightboxImage(img)}
-                className="gallery-card w-full aspect-square max-w-[150px] xs:max-w-[200px] sm:max-w-[260px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative rotate-[3deg] md:rotate-[3deg] bg-surface"
+                className="gallery-card w-full aspect-square max-w-[150px] xs:max-w-[200px] sm:max-w-[260px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative bg-surface"
               >
                 <img 
                   src={img} 
