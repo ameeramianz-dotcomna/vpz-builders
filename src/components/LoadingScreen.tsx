@@ -52,7 +52,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   }, [])
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-bg flex flex-col justify-between p-8 sm:p-12 md:p-16 select-none overflow-hidden">
+    <div className="fixed inset-0 z-[9999] bg-[#07090A] flex flex-col justify-between p-8 sm:p-12 md:p-16 select-none overflow-hidden text-white">
       
       {/* Top Section */}
       <div className="flex justify-between items-start">
@@ -60,11 +60,11 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-xs text-muted uppercase tracking-[0.3em] font-medium"
+          className="text-xs text-slate-400 uppercase tracking-[0.3em] font-medium"
         >
           VPZ Builders • Vallapuzha
         </motion.div>
-        <div className="text-xs text-muted/60 font-mono">
+        <div className="text-xs text-slate-500 font-mono">
           Est. 2011
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             animate={{ y: 0, opacity: 0.8 }}
             exit={{ y: -20, opacity: 0 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="text-4xl md:text-6xl lg:text-7xl font-display italic text-text-primary text-center"
+            className="text-4xl md:text-6xl lg:text-7xl font-display italic text-white text-center"
           >
             {words[wordIndex]}
           </motion.h2>
@@ -88,16 +88,16 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       {/* Bottom Section */}
       <div className="flex flex-col gap-6">
         <div className="flex justify-between items-end">
-          <div className="text-xs text-muted uppercase tracking-[0.2em] font-light max-w-[200px] leading-relaxed">
+          <div className="text-xs text-slate-400 uppercase tracking-[0.2em] font-light max-w-[200px] leading-relaxed">
             Building with precision and architectural excellence.
           </div>
-          <div className="text-6xl md:text-8xl lg:text-9xl font-display text-text-primary tabular-nums select-none leading-none">
+          <div className="text-6xl md:text-8xl lg:text-9xl font-display text-white tabular-nums select-none leading-none">
             {String(count).padStart(3, "0")}
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="h-[3px] bg-stroke/50 w-full relative rounded-full overflow-hidden">
+        <div className="h-[3px] bg-white/10 w-full relative rounded-full overflow-hidden">
           <motion.div 
             className="absolute top-0 left-0 bottom-0 accent-gradient rounded-full"
             style={{ 

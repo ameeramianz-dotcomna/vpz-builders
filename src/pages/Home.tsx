@@ -245,9 +245,9 @@ export default function Home() {
       </nav>
 
       {/* Hero Section (Includes responsive text scaling and wrap-safe cycler) */}
-      <section id="home" className="relative h-screen overflow-hidden flex items-center justify-center bg-bg">
+      <section id="home" className="relative h-screen overflow-hidden flex items-center justify-center bg-[#07090A]">
         {/* Background HLS Video */}
-        <div className="absolute inset-0 z-0 bg-bg/90">
+        <div className="absolute inset-0 z-0 bg-[#07090A]/95">
           <video 
             ref={heroVideoRef}
             autoPlay 
@@ -257,9 +257,9 @@ export default function Home() {
             className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 opacity-35"
           />
           {/* Subtle Dark Overlay */}
-          <div className="absolute inset-0 bg-bg/20 z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
           {/* Bottom Gradient Fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#07090A] to-transparent z-10" />
         </div>
 
         {/* Hero Content */}
@@ -268,15 +268,15 @@ export default function Home() {
             "we build best"
           </span>
           
-          <h1 className="name-reveal text-4xl xs:text-5xl sm:text-8xl md:text-9xl font-display font-bold leading-none tracking-tight text-text-primary mb-4 sm:mb-6">
+          <h1 className="name-reveal text-4xl xs:text-5xl sm:text-8xl md:text-9xl font-display font-bold leading-none tracking-tight text-white mb-4 sm:mb-6">
             VPZ <span className="font-display italic font-light text-primary">Builders</span>
           </h1>
 
-          <div className="blur-in text-xs xs:text-sm sm:text-xl md:text-2xl text-muted font-light mb-6 max-w-2xl px-2 leading-relaxed">
+          <div className="blur-in text-xs xs:text-sm sm:text-xl md:text-2xl text-slate-300 font-light mb-6 max-w-2xl px-2 leading-relaxed">
             A premium <span className="text-secondary font-medium font-display italic inline-block">{roles[roleIndex]}</span> team headed by Musthafa Thrundikkal.
           </div>
 
-          <p className="blur-in text-xs sm:text-base text-muted max-w-lg mb-8 sm:mb-10 leading-relaxed font-light px-2">
+          <p className="blur-in text-xs sm:text-base text-slate-400 max-w-lg mb-8 sm:mb-10 leading-relaxed font-light px-2">
             With over 15 years of construction excellence in Vallapuzha, Palakkad, Kerala, we engineer state-of-the-art residences and commercial structures built to endure.
           </p>
 
@@ -289,7 +289,7 @@ export default function Home() {
             </a>
             <a 
               href="#contact"
-              className="w-1/2 xs:w-auto px-5 sm:px-7 py-3 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider border border-stroke bg-surface/50 text-text-primary backdrop-blur-sm transition-all duration-300 hover:scale-105 active:scale-95 hover:border-primary/40 hover:bg-surface text-center"
+              className="w-1/2 xs:w-auto px-5 sm:px-7 py-3 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider border border-white/20 bg-white/5 text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 active:scale-95 hover:border-primary/40 hover:bg-white/10 text-center"
             >
               Get in Touch
             </a>
@@ -298,8 +298,8 @@ export default function Home() {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 sm:gap-3">
-          <span className="text-[8px] text-muted uppercase tracking-[0.25em] font-light">SCROLL</span>
-          <div className="w-[1px] h-8 sm:h-10 bg-stroke/60 relative overflow-hidden">
+          <span className="text-[8px] text-slate-400 uppercase tracking-[0.25em] font-light">SCROLL</span>
+          <div className="w-[1px] h-8 sm:h-10 bg-white/10 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-4 bg-primary animate-scroll-down" />
           </div>
         </div>
@@ -539,10 +539,10 @@ export default function Home() {
       </section>
 
       {/* Contact & Footer Section */}
-      <section id="contact" className="relative bg-bg pt-16 sm:pt-20 pb-12 overflow-hidden min-h-[90vh] flex flex-col justify-between">
+      <section id="contact" className="relative bg-[#07090A] pt-16 sm:pt-20 pb-12 overflow-hidden min-h-[90vh] flex flex-col justify-between text-white">
         
         {/* Background HLS Video (Flipped Vertically) */}
-        <div className="absolute inset-0 z-0 bg-bg">
+        <div className="absolute inset-0 z-0 bg-[#07090A]">
           <video 
             ref={footerVideoRef}
             autoPlay 
@@ -552,7 +552,7 @@ export default function Home() {
             className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-25"
           />
           {/* Heavy Dark Overlay */}
-          <div className="absolute inset-0 bg-bg/75 z-10" />
+          <div className="absolute inset-0 bg-black/60 z-10" />
         </div>
 
         {/* Marquee Text */}
@@ -568,42 +568,42 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 my-12 sm:my-16 space-y-8 sm:space-y-12 w-full">
           <div className="text-center space-y-3 sm:space-y-4">
             <h2 className="text-xs font-semibold text-primary tracking-[0.3em] uppercase">"we build best"</h2>
-            <h3 className="text-3xl sm:text-6xl font-display font-medium text-text-primary leading-tight">
+            <h3 className="text-3xl sm:text-6xl font-display font-medium text-white leading-tight">
               Let's engineer your <span className="font-display italic text-secondary">vision</span>
             </h3>
-            <p className="text-xs sm:text-base text-muted font-light max-w-lg mx-auto leading-relaxed">
+            <p className="text-xs sm:text-base text-slate-300 font-light max-w-lg mx-auto leading-relaxed">
               Ready to design or execute your commercial space or premium residential home? Reach out to Musthafa Thrundikkal and the VPZ team.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 text-left max-w-4xl mx-auto">
             {/* Call card */}
-            <div className="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group">
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-white/10 hover:border-primary/45 transition-all duration-300 group bg-white/5">
               <div>
                 <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5 sm:mb-6">
                   <span className="text-sm">📞</span>
                 </div>
-                <h4 className="text-base sm:text-lg font-medium text-text-primary mb-2">Direct Call</h4>
-                <p className="text-xs text-muted mb-4 font-light leading-relaxed">Available for site consults, structural inquiries, and project estimates.</p>
+                <h4 className="text-base sm:text-lg font-medium text-white mb-2">Direct Call</h4>
+                <p className="text-xs text-slate-400 mb-4 font-light leading-relaxed">Available for site consults, structural inquiries, and project estimates.</p>
               </div>
               <div className="space-y-2">
-                <a href="tel:+919746222916" className="block text-sm font-semibold text-primary hover:text-secondary hover:underline transition-colors font-mono">
+                <a href="tel:+919746222916" className="block text-sm font-semibold text-secondary hover:text-primary hover:underline transition-colors font-mono">
                   +91 97462 22916
                 </a>
-                <a href="tel:+919747561111" className="block text-sm font-semibold text-primary hover:text-secondary hover:underline transition-colors font-mono">
+                <a href="tel:+919747561111" className="block text-sm font-semibold text-secondary hover:text-primary hover:underline transition-colors font-mono">
                   +91 97475 61111
                 </a>
               </div>
             </div>
 
             {/* WhatsApp card */}
-            <div className="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group">
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-white/10 hover:border-primary/45 transition-all duration-300 group bg-white/5">
               <div>
                 <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-5 sm:mb-6">
                   <span className="text-sm">💬</span>
                 </div>
-                <h4 className="text-base sm:text-lg font-medium text-text-primary mb-2">WhatsApp Chat</h4>
-                <p className="text-xs text-muted mb-4 font-light leading-relaxed">Send us details of your building site or project designs for rapid response.</p>
+                <h4 className="text-base sm:text-lg font-medium text-white mb-2">WhatsApp Chat</h4>
+                <p className="text-xs text-slate-400 mb-4 font-light leading-relaxed">Send us details of your building site or project designs for rapid response.</p>
               </div>
               <div className="space-y-2 flex flex-col gap-1.5">
                 <a href="https://wa.me/919746222916" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/30 text-[11px] font-semibold text-emerald-400 transition-all">
@@ -620,16 +620,16 @@ export default function Home() {
               href="https://www.google.com/maps/dir/?api=1&destination=Vallapuzha,+Palakkad,+Kerala,+India"
               target="_blank"
               rel="noreferrer"
-              className="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-primary/35 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group cursor-pointer block"
+              className="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-white/10 hover:border-primary/45 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group cursor-pointer block bg-white/5"
             >
               <div>
                 <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
                   <span className="text-sm">📍</span>
                 </div>
-                <h4 className="text-base sm:text-lg font-medium text-text-primary mb-2 group-hover:text-primary transition-colors">Office Location</h4>
-                <p className="text-xs text-muted mb-4 font-light leading-relaxed">Visit our headquarters in Palakkad. Click for live Google Maps navigation & directions.</p>
+                <h4 className="text-base sm:text-lg font-medium text-white mb-2 group-hover:text-primary transition-colors">Office Location</h4>
+                <p className="text-xs text-slate-400 mb-4 font-light leading-relaxed">Visit our headquarters in Palakkad. Click for live Google Maps navigation & directions.</p>
               </div>
-              <div className="text-xs text-text-primary leading-relaxed font-mono flex items-center justify-between border-t border-stroke/30 pt-4">
+              <div className="text-xs text-slate-300 leading-relaxed font-mono flex items-center justify-between border-t border-white/10 pt-4">
                 <span>
                   VPZ Builders<br />
                   Valappuzha, 679336<br />
@@ -642,7 +642,7 @@ export default function Home() {
         </div>
 
         {/* Clickable Projects / Works in Footer Section */}
-        <div id="footer-works" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full border-t border-stroke/30 pt-10 pb-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-left bg-surface/40 backdrop-blur-md rounded-3xl p-5 sm:p-8">
+        <div id="footer-works" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full border-t border-white/10 pt-10 pb-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-left bg-white/5 backdrop-blur-md rounded-3xl p-5 sm:p-8">
           
           {/* Completed Works */}
           <div>
@@ -650,7 +650,7 @@ export default function Home() {
             <ul className="space-y-2">
               {projects.filter(p => p.category === 'completed').map(p => (
                 <li key={p.id}>
-                  <Link to={`/project/${p.id}`} className="text-xs text-muted hover:text-primary transition-colors flex items-center gap-1">
+                  <Link to={`/project/${p.id}`} className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1">
                     <span>•</span> {p.title}
                   </Link>
                 </li>
@@ -664,13 +664,13 @@ export default function Home() {
             <ul className="space-y-2">
               {projects.filter(p => p.category === 'ongoing').map(p => (
                 <li key={p.id}>
-                  <Link to={`/project/${p.id}`} className="text-xs text-muted hover:text-primary transition-colors flex items-center gap-1">
+                  <Link to={`/project/${p.id}`} className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1">
                     <span>•</span> {p.title}
                   </Link>
                 </li>
               ))}
               {projects.filter(p => p.category === 'ongoing').length === 0 && (
-                <span className="text-xs text-muted/50 font-light">None at the moment</span>
+                <span className="text-xs text-slate-500 font-light">None at the moment</span>
               )}
             </ul>
           </div>
@@ -681,13 +681,13 @@ export default function Home() {
             <ul className="space-y-2">
               {projects.filter(p => p.category === 'upcoming').map(p => (
                 <li key={p.id}>
-                  <Link to={`/project/${p.id}`} className="text-xs text-muted hover:text-primary transition-colors flex items-center gap-1">
+                  <Link to={`/project/${p.id}`} className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1">
                     <span>•</span> {p.title}
                   </Link>
                 </li>
               ))}
               {projects.filter(p => p.category === 'upcoming').length === 0 && (
-                <span className="text-xs text-muted/50 font-light">Planning phase</span>
+                <span className="text-xs text-slate-500 font-light">Planning phase</span>
               )}
             </ul>
           </div>
@@ -695,7 +695,7 @@ export default function Home() {
         </div>
 
         {/* Footer Bar */}
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-stroke/20 pt-8 text-center sm:text-left">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-white/10 pt-8 text-center sm:text-left">
           
           {/* Availability badge & Logo */}
           <div className="flex items-center gap-4">
@@ -707,15 +707,15 @@ export default function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span className="text-xs text-muted font-medium tracking-wide uppercase">Available for projects in Kerala</span>
+              <span className="text-xs text-slate-400 font-medium tracking-wide uppercase">Available for projects in Kerala</span>
             </div>
           </div>
 
           {/* Socials */}
           <div className="flex items-center gap-5 sm:gap-6">
-            <a href="tel:+919746222916" className="text-xs text-muted hover:text-primary transition-colors">Call Main</a>
-            <a href="https://wa.me/919747561111" target="_blank" rel="noreferrer" className="text-xs text-muted hover:text-primary transition-colors">WhatsApp</a>
-            <a href="mailto:musthafa@vpzbuilders.com" className="text-xs text-muted hover:text-primary transition-colors">Email</a>
+            <a href="tel:+919746222916" className="text-xs text-slate-400 hover:text-primary transition-colors">Call Main</a>
+            <a href="https://wa.me/919747561111" target="_blank" rel="noreferrer" className="text-xs text-slate-400 hover:text-primary transition-colors">WhatsApp</a>
+            <a href="mailto:musthafa@vpzbuilders.com" className="text-xs text-slate-400 hover:text-primary transition-colors">Email</a>
           </div>
 
           {/* Legal */}
