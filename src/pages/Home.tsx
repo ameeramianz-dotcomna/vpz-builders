@@ -107,6 +107,7 @@ export default function Home() {
   }, [])
 
   // GSAP Parallax scroll gallery pinning and column movement (Only on desktop >= 768px)
+  // + Mobile staggered scroll animations (< 768px)
   useEffect(() => {
     const container = parallaxContainerRef.current
     const pinned = pinnedContentRef.current
@@ -117,8 +118,8 @@ export default function Home() {
 
     const mm = gsap.matchMedia()
 
+    // ── Desktop: X-parallax pinned columns ──────────────────────────
     mm.add("(min-width: 768px)", () => {
-      // Pin the center content
       ScrollTrigger.create({
         trigger: container,
         start: "top top",
@@ -127,7 +128,6 @@ export default function Home() {
         pinSpacing: false
       })
 
-      // Move left column upwards
       gsap.fromTo(colLeft, 
         { y: "5%", x: "-15%" },
         {
@@ -143,12 +143,50 @@ export default function Home() {
         }
       )
 
-      // Move right column downwards
       gsap.fromTo(colRight, 
         { y: "-15%", x: "15%" },
         {
           y: "15%",
           x: "-15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      )
+    })
+
+    // ── Mobile: Opposite scroll parallax columns ──────────────────
+    mm.add("(max-width: 767px)", () => {
+      ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "bottom bottom",
+        pin: pinned,
+        pinSpacing: false
+      })
+
+      gsap.fromTo(colLeft, 
+        { y: "15%" },
+        {
+          y: "-20%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      )
+
+      gsap.fromTo(colRight, 
+        { y: "-15%" },
+        {
+          y: "15%",
           ease: "none",
           scrollTrigger: {
             trigger: container,
@@ -237,37 +275,37 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Floating Pill Navbar (Perfectly scaled and readable) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 md:pt-6 px-3 sm:px-4">
-        <div className={`inline-flex items-center rounded-full glass-panel px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 transition-all duration-300 ${scrollY > 50 ? 'shadow-xl shadow-black/60 border-primary/25 bg-black/85' : ''}`}>
+      {/* Floating Pill Navbar (Perfectly scaled and responsive) */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 md:pt-6 px-2 sm:px-4">
+        <div className={`inline-flex items-center rounded-full glass-panel px-2.5 py-1.5 xs:px-3 xs:py-2 md:px-5 md:py-3 transition-all duration-300 ${scrollY > 50 ? 'shadow-xl shadow-black/60 border-primary/25 bg-black/85' : ''}`}>
           
           {/* Logo */}
-          <a href="#home" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full relative flex items-center justify-center overflow-hidden group hover:scale-105 transition-transform duration-300 mr-1.5 sm:mr-2">
+          <a href="#home" className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 rounded-full relative flex items-center justify-center overflow-hidden group hover:scale-105 transition-transform duration-300 mr-1 xs:mr-1.5 sm:mr-2">
             <div className="absolute inset-0 rounded-full border border-transparent group-hover:accent-gradient group-hover:rotate-180 transition-transform duration-700 pointer-events-none" />
             <div className="absolute inset-[1.5px] rounded-full bg-bg flex items-center justify-center overflow-hidden">
               <img src="/logo/vlogo.png" alt="VPZ Logo" className="w-full h-full object-cover p-0.5 bg-white/5" />
             </div>
           </a>
 
-          <div className="w-px h-5 bg-stroke/30 mx-1.5 hidden xs:block" />
+          <div className="w-px h-4 bg-stroke/30 mx-1 hidden xs:block sm:mx-1.5" />
 
           {/* Links */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            <a href="#home" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white hover:bg-white/10 transition-all">Home</a>
-            <a href="#work" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Work</a>
-            <a href="#journal" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Journal</a>
-            <a href="#explorations" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Gallery</a>
+          <div className="flex items-center gap-0.5 xs:gap-1 sm:gap-2">
+            <a href="#home" className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium rounded-full px-2 xs:px-3 sm:px-4 py-1 sm:py-1.5 text-white hover:bg-white/10 transition-all">Home</a>
+            <a href="#work" className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium rounded-full px-2 xs:px-3 sm:px-4 py-1 sm:py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Work</a>
+            <a href="#journal" className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium rounded-full px-2 xs:px-3 sm:px-4 py-1 sm:py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Journal</a>
+            <a href="#explorations" className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium rounded-full px-2 xs:px-3 sm:px-4 py-1 sm:py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Gallery</a>
           </div>
 
-          <div className="w-px h-5 bg-stroke/30 mx-1.5 sm:mx-2.5" />
+          <div className="w-px h-4 bg-stroke/30 mx-1 xs:mx-1.5 sm:mx-2.5" />
 
           {/* "Say hi" CTA Button */}
           <a 
             href="#contact" 
-            className="relative overflow-hidden rounded-full group p-[1px] text-xs sm:text-sm font-semibold flex items-center justify-center text-text-primary shrink-0"
+            className="relative overflow-hidden rounded-full group p-[1px] text-[10px] xs:text-xs sm:text-sm font-semibold flex items-center justify-center text-text-primary shrink-0"
           >
             <span className="absolute inset-0 rounded-full bg-white/20 group-hover:accent-gradient transition-all duration-300 pointer-events-none" />
-            <span className="relative z-10 px-3.5 sm:px-5 py-1.5 bg-white hover:bg-slate-100 rounded-full flex items-center gap-1 border border-transparent text-text-primary">
+            <span className="relative z-10 px-2.5 py-1 xs:px-3.5 xs:py-1.5 sm:px-5 bg-white hover:bg-slate-100 rounded-full flex items-center gap-0.5 xs:gap-1 border border-transparent text-text-primary">
               Contact <span className="text-[8px] text-primary">↗</span>
             </span>
           </a>
@@ -276,9 +314,9 @@ export default function Home() {
       </nav>
 
       {/* Hero Section (Includes responsive text scaling and wrap-safe cycler) */}
-      <section id="home" className="relative h-screen overflow-hidden flex items-center justify-center bg-[#07090A]">
+      <section id="home" className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0B0E14]">
         {/* Background HLS Video */}
-        <div className="absolute inset-0 z-0 bg-[#07090A]/95">
+        <div className="absolute inset-0 z-0 bg-[#0B0E14]/90">
           <video 
             ref={heroVideoRef}
             autoPlay 
@@ -287,10 +325,12 @@ export default function Home() {
             playsInline
             className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 opacity-35"
           />
+          {/* Grid Overlay */}
+          <div className="absolute inset-0 dark-grid-overlay opacity-50 z-10 pointer-events-none" />
           {/* Subtle Dark Overlay */}
           <div className="absolute inset-0 bg-black/40 z-10" />
           {/* Bottom Gradient Fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#07090A] to-transparent z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0B0E14] to-transparent z-10" />
         </div>
 
         {/* Hero Content */}
@@ -470,11 +510,11 @@ export default function Home() {
       </section>
 
       {/* Explorations (Parallax Gallery - Responsive height and flow logic) */}
-      <section id="explorations" ref={parallaxContainerRef} className="relative bg-transparent min-h-fit md:min-h-[300vh] border-t border-stroke/20 py-16 md:py-0">
+      <section id="explorations" ref={parallaxContainerRef} className="relative bg-transparent min-h-[160vh] md:min-h-[300vh] border-t border-stroke/20 py-12 md:py-0">
         
-        {/* Layer 1: Pinned Center (Behaves relative on mobile, pinned absolute on desktop) */}
-        <div ref={pinnedContentRef} className="relative md:absolute md:inset-0 md:h-screen z-10 flex items-center justify-center md:pointer-events-none pb-12 md:pb-0">
-          <div className="max-w-md mx-auto px-6 text-center space-y-4 sm:space-y-6 select-none md:pointer-events-auto">
+        {/* Layer 1: Pinned Center */}
+        <div ref={pinnedContentRef} className="absolute inset-0 h-screen z-10 flex items-center justify-center pointer-events-none pb-12 md:pb-0">
+          <div className="max-w-xs sm:max-w-md mx-auto px-5 py-6 sm:p-8 text-center space-y-4 sm:space-y-6 select-none md:pointer-events-auto bg-white/70 backdrop-blur-md rounded-3xl border border-stroke/40 shadow-lg md:bg-transparent md:backdrop-blur-none md:border-none md:shadow-none">
             <span className="text-[10px] sm:text-xs text-primary uppercase tracking-[0.3em] font-medium font-mono">Gallery Overview</span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-display italic text-text-primary">
               Visual playground
@@ -492,15 +532,15 @@ export default function Home() {
         </div>
 
         {/* Layer 2: Parallax/Grid Columns (Responsive side-by-side grids or parallax columns) */}
-        <div className="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 flex flex-col md:flex-row justify-between gap-8 md:gap-40 py-6 md:py-24">
+        <div className="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 flex flex-row justify-between gap-4 sm:gap-8 md:gap-40 py-6 md:py-24">
           
-          {/* Left Column (moving up on desktop, flex grid on mobile) */}
-          <div ref={colLeftRef} className="w-full md:flex-1 flex flex-row md:flex-col gap-4 sm:gap-6 md:gap-24 md:pt-48 items-center md:items-end justify-center flex-wrap sm:flex-nowrap">
+          {/* Left Column */}
+          <div ref={colLeftRef} className="w-1/2 md:flex-1 flex flex-col gap-4 sm:gap-6 md:gap-24 md:pt-48 items-center md:items-end justify-center">
             {explorationImages.slice(0, 3).map((img, idx) => (
               <div 
                 key={idx}
                 onClick={() => setLightboxImage(img)}
-                className="w-[45%] xs:w-[30%] sm:w-full aspect-square max-w-[240px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative rotate-[-2deg] md:rotate-[-2deg] bg-surface"
+                className="gallery-card w-full aspect-square max-w-[150px] xs:max-w-[200px] sm:max-w-[260px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative rotate-[-2deg] md:rotate-[-2deg] bg-surface"
               >
                 <img 
                   src={img} 
@@ -513,13 +553,13 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Right Column (moving down on desktop, flex grid on mobile) */}
-          <div ref={colRightRef} className="w-full md:flex-1 flex flex-row md:flex-col gap-4 sm:gap-6 md:gap-24 items-center md:items-start justify-center flex-wrap sm:flex-nowrap">
+          {/* Right Column */}
+          <div ref={colRightRef} className="w-1/2 md:flex-1 flex flex-col gap-4 sm:gap-6 md:gap-24 items-center md:items-start justify-center">
             {explorationImages.slice(3, 6).map((img, idx) => (
               <div 
                 key={idx}
                 onClick={() => setLightboxImage(img)}
-                className="w-[45%] xs:w-[30%] sm:w-full aspect-square max-w-[240px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative rotate-[3deg] md:rotate-[3deg] bg-surface"
+                className="gallery-card w-full aspect-square max-w-[150px] xs:max-w-[200px] sm:max-w-[260px] md:max-w-[320px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stroke hover:border-primary/30 cursor-zoom-in group shadow-2xl relative rotate-[3deg] md:rotate-[3deg] bg-surface"
               >
                 <img 
                   src={img} 
@@ -570,10 +610,10 @@ export default function Home() {
       </section>
 
       {/* Contact & Footer Section */}
-      <section id="contact" className="relative bg-[#07090A] pt-16 sm:pt-20 pb-12 overflow-hidden min-h-[90vh] flex flex-col justify-between text-white">
+      <section id="contact" className="relative bg-[#0B0E14] pt-16 sm:pt-20 pb-12 overflow-hidden min-h-[90vh] flex flex-col justify-between text-white">
         
         {/* Background HLS Video (Flipped Vertically) */}
-        <div className="absolute inset-0 z-0 bg-[#07090A]">
+        <div className="absolute inset-0 z-0 bg-[#0B0E14]">
           <video 
             ref={footerVideoRef}
             autoPlay 
@@ -582,13 +622,15 @@ export default function Home() {
             playsInline
             className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-25"
           />
+          {/* Grid Overlay */}
+          <div className="absolute inset-0 dark-grid-overlay opacity-50 z-10 pointer-events-none" />
           {/* Heavy Dark Overlay */}
           <div className="absolute inset-0 bg-black/60 z-10" />
         </div>
 
         {/* Marquee Text */}
-        <div className="w-full relative overflow-hidden py-3 sm:py-4 z-10 border-y border-stroke/30 bg-white">
-          <div ref={marqueeRef} className="whitespace-nowrap inline-flex gap-8 text-[24px] sm:text-5xl md:text-6xl font-bold tracking-widest uppercase text-primary/50 select-none">
+        <div className="w-full relative overflow-hidden py-3 sm:py-4 z-10 border-y border-white/10 bg-white/5 backdrop-blur-sm">
+          <div ref={marqueeRef} className="whitespace-nowrap inline-flex gap-8 text-[24px] sm:text-5xl md:text-6xl font-bold tracking-widest uppercase text-white/30 select-none">
             {Array.from({ length: 15 }).map((_, i) => (
               <span key={i}>WE BUILD BEST • VPZ BUILDERS •</span>
             ))}

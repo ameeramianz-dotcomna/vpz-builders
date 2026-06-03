@@ -52,7 +52,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   }, [])
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-[#07090A] flex flex-col justify-between p-8 sm:p-12 md:p-16 select-none overflow-hidden text-white">
+    <div className="fixed inset-0 z-[9999] bg-[#0B0E14] flex flex-col justify-between p-8 sm:p-12 md:p-16 select-none overflow-hidden text-white">
       
       {/* Top Section */}
       <div className="flex justify-between items-start">
