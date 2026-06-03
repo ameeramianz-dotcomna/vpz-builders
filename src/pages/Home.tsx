@@ -21,7 +21,7 @@ const videoSrc = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx
 const explorationImages = [
   "/works/v8671.jpg",
   "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80"
@@ -556,7 +556,7 @@ export default function Home() {
         </div>
 
         {/* Marquee Text */}
-        <div className="w-full relative overflow-hidden py-3 sm:py-4 z-10 border-y border-stroke/20 bg-bg/30 backdrop-blur-sm">
+        <div className="w-full relative overflow-hidden py-3 sm:py-4 z-10 border-y border-white/10 bg-black/40 backdrop-blur-sm">
           <div ref={marqueeRef} className="whitespace-nowrap inline-flex gap-8 text-[24px] sm:text-5xl md:text-6xl font-bold tracking-widest uppercase text-primary/10 select-none">
             {Array.from({ length: 15 }).map((_, i) => (
               <span key={i}>WE BUILD BEST • VPZ BUILDERS •</span>
