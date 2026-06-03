@@ -11,7 +11,7 @@ export const projects: Project[] = [
     year: '2025',
     client: 'Musthafa Thrundikkal Family',
     area: '4,200 sq. ft.',
-    image: '/works/v8671.jpg',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
     gallery: [
       'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
@@ -76,7 +76,7 @@ export const journalEntries: JournalEntry[] = [
     content: 'Kerala is famous for its heavy monsoon rains. Building here requires materials that not only resist moisture infiltration but also keep indoor spaces ventilated and cool during the hot and humid summer months. Musthafa Thrundikkal discusses the benefits of laterite bricks, lime-plastering techniques, and double-layered terra-cotta clay roof setups that naturally regulate indoor ambient temperature.',
     date: 'May 12, 2026',
     readTime: '4 min read',
-    image: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&w=600&q=80'
+    image: 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'smart-home-integration',
