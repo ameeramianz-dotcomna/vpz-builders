@@ -34,6 +34,10 @@
 /* Forced dark theme defaults */
 body {
   background-color: var(--bg);
+  background-image: 
+    linear-gradient(to right, var(--stroke) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--stroke) 1px, transparent 1px);
+  background-size: 45px 45px;
   color: var(--text-primary);
   font-family: 'Outfit', sans-serif;
   margin: 0;

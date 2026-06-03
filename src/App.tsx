@@ -10,7 +10,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-bg text-text-primary font-body antialiased">
+      <div className="min-h-screen bg-transparent text-text-primary font-body antialiased">
         <AnimatePresence mode="wait">
           {loading && (
             <LoadingScreen onComplete={() => setLoading(false)} />

@@ -8,7 +8,7 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-bg text-text-primary flex flex-col items-center justify-center p-6 text-center">
+      <div className="min-h-screen bg-transparent text-text-primary flex flex-col items-center justify-center p-6 text-center">
         <h2 className="text-3xl font-display italic mb-4">Project not found</h2>
         <p className="text-muted text-sm mb-6 max-w-sm">We couldn&apos;t find a project with the identifier &quot;{id}&quot;.</p>
         <Link 
@@ -22,7 +22,7 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-bg text-text-primary font-sans relative pb-24 overflow-x-hidden">
+    <div className="min-h-screen bg-transparent text-text-primary font-sans relative pb-24 overflow-x-hidden">
       
       {/* Decorative Blur Backgrounds */}
       <div className="absolute top-0 right-10 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />

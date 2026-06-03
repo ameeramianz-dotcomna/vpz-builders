@@ -306,7 +306,7 @@ export default function Home() {
       </section>
 
       {/* Selected Works Section */}
-      <section id="work" className="bg-bg py-16 sm:py-24 border-t border-stroke/20">
+      <section id="work" className="bg-transparent py-16 sm:py-24 border-t border-stroke/20">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           
           {/* Section Header */}
@@ -360,7 +360,7 @@ export default function Home() {
       </section>
 
       {/* Journal Section */}
-      <section id="journal" className="bg-bg py-16 sm:py-24 border-t border-stroke/20">
+      <section id="journal" className="bg-transparent py-16 sm:py-24 border-t border-stroke/20">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           
           {/* Header */}
@@ -439,7 +439,7 @@ export default function Home() {
       </section>
 
       {/* Explorations (Parallax Gallery - Responsive height and flow logic) */}
-      <section id="explorations" ref={parallaxContainerRef} className="relative bg-bg min-h-fit md:min-h-[300vh] border-t border-stroke/20 py-16 md:py-0">
+      <section id="explorations" ref={parallaxContainerRef} className="relative bg-transparent min-h-fit md:min-h-[300vh] border-t border-stroke/20 py-16 md:py-0">
         
         {/* Layer 1: Pinned Center (Behaves relative on mobile, pinned absolute on desktop) */}
         <div ref={pinnedContentRef} className="relative md:absolute md:inset-0 md:h-screen z-10 flex items-center justify-center md:pointer-events-none pb-12 md:pb-0">
@@ -506,7 +506,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-bg py-16 sm:py-24 border-y border-stroke/20">
+      <section className="bg-transparent py-16 sm:py-24 border-y border-stroke/20">
         <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
             
