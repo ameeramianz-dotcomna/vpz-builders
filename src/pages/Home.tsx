@@ -19,7 +19,7 @@ const videoSrc = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx
 
 // Explorations images - first one is the user's provided project work image
 const explorationImages = [
-  "/works/v8671.jpg",
+  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
@@ -129,9 +129,10 @@ export default function Home() {
 
       // Move left column upwards
       gsap.fromTo(colLeft, 
-        { y: "5%" },
+        { y: "5%", x: "-15%" },
         {
           y: "-35%",
+          x: "15%",
           ease: "none",
           scrollTrigger: {
             trigger: container,
@@ -144,9 +145,10 @@ export default function Home() {
 
       // Move right column downwards
       gsap.fromTo(colRight, 
-        { y: "-15%" },
+        { y: "-15%", x: "15%" },
         {
           y: "15%",
+          x: "-15%",
           ease: "none",
           scrollTrigger: {
             trigger: container,
@@ -178,6 +180,35 @@ export default function Home() {
     }
   }, [])
 
+  // GSAP Stats counter animation (counts up quickly on scroll)
+  useEffect(() => {
+    const elements = document.querySelectorAll('.stat-count')
+    if (elements.length === 0) return
+
+    const ctx = gsap.context(() => {
+      elements.forEach((el) => {
+        const target = parseInt(el.getAttribute('data-target') || '0', 10)
+        const obj = { val: 0 }
+        
+        gsap.to(obj, {
+          val: target,
+          duration: 0.8,
+          ease: "power2.out",
+          onUpdate: () => {
+            el.textContent = String(Math.floor(obj.val))
+          },
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            toggleActions: "play none none none"
+          }
+        })
+      })
+    })
+
+    return () => ctx.revert()
+  }, [])
+
   return (
     <div className="relative">
       
@@ -206,37 +237,37 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Floating Pill Navbar (Perfectly scaled for small screens) */}
+      {/* Floating Pill Navbar (Perfectly scaled and readable) */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 md:pt-6 px-3 sm:px-4">
-        <div className={`inline-flex items-center rounded-full glass-panel px-2 sm:px-3 py-1.5 sm:py-2 transition-all duration-300 ${scrollY > 50 ? 'shadow-xl shadow-black/60 border-primary/25 bg-surface/90' : ''}`}>
+        <div className={`inline-flex items-center rounded-full glass-panel px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 transition-all duration-300 ${scrollY > 50 ? 'shadow-xl shadow-black/60 border-primary/25 bg-black/85' : ''}`}>
           
           {/* Logo */}
-          <a href="#home" className="w-7 h-7 sm:w-9 sm:h-9 rounded-full relative flex items-center justify-center overflow-hidden group hover:scale-105 transition-transform duration-300 mr-1 sm:mr-1.5">
+          <a href="#home" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full relative flex items-center justify-center overflow-hidden group hover:scale-105 transition-transform duration-300 mr-1.5 sm:mr-2">
             <div className="absolute inset-0 rounded-full border border-transparent group-hover:accent-gradient group-hover:rotate-180 transition-transform duration-700 pointer-events-none" />
             <div className="absolute inset-[1.5px] rounded-full bg-bg flex items-center justify-center overflow-hidden">
               <img src="/logo/vlogo.png" alt="VPZ Logo" className="w-full h-full object-cover p-0.5 bg-white/5" />
             </div>
           </a>
 
-          <div className="w-px h-4 bg-stroke mx-1 hidden xs:block" />
+          <div className="w-px h-5 bg-stroke/30 mx-1.5 hidden xs:block" />
 
           {/* Links */}
-          <div className="flex items-center gap-0.5 sm:gap-1">
-            <a href="#home" className="text-[10px] sm:text-xs md:text-sm font-medium rounded-full px-2 sm:px-3 py-1 text-text-primary hover:bg-stroke/40 transition-all">Home</a>
-            <a href="#work" className="text-[10px] sm:text-xs md:text-sm font-medium rounded-full px-2 sm:px-3 py-1 text-muted hover:text-text-primary hover:bg-stroke/30 transition-all">Work</a>
-            <a href="#journal" className="text-[10px] sm:text-xs md:text-sm font-medium rounded-full px-2 sm:px-3 py-1 text-muted hover:text-text-primary hover:bg-stroke/30 transition-all">Journal</a>
-            <a href="#explorations" className="text-[10px] sm:text-xs md:text-sm font-medium rounded-full px-2 sm:px-3 py-1 text-muted hover:text-text-primary hover:bg-stroke/30 transition-all">Gallery</a>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <a href="#home" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white hover:bg-white/10 transition-all">Home</a>
+            <a href="#work" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Work</a>
+            <a href="#journal" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Journal</a>
+            <a href="#explorations" className="text-xs sm:text-sm md:text-base font-medium rounded-full px-3 sm:px-4 py-1.5 text-white/75 hover:text-white hover:bg-white/10 transition-all">Gallery</a>
           </div>
 
-          <div className="w-px h-4 bg-stroke mx-1 sm:mx-2" />
+          <div className="w-px h-5 bg-stroke/30 mx-1.5 sm:mx-2.5" />
 
           {/* "Say hi" CTA Button */}
           <a 
             href="#contact" 
-            className="relative overflow-hidden rounded-full group p-[1px] text-[10px] sm:text-xs font-semibold flex items-center justify-center text-text-primary shrink-0"
+            className="relative overflow-hidden rounded-full group p-[1px] text-xs sm:text-sm font-semibold flex items-center justify-center text-text-primary shrink-0"
           >
-            <span className="absolute inset-0 rounded-full bg-stroke/60 group-hover:accent-gradient transition-all duration-300 pointer-events-none" />
-            <span className="relative z-10 px-2.5 sm:px-4 py-1 bg-surface rounded-full flex items-center gap-1 border border-transparent">
+            <span className="absolute inset-0 rounded-full bg-white/20 group-hover:accent-gradient transition-all duration-300 pointer-events-none" />
+            <span className="relative z-10 px-3.5 sm:px-5 py-1.5 bg-white hover:bg-slate-100 rounded-full flex items-center gap-1 border border-transparent text-text-primary">
               Contact <span className="text-[8px] text-primary">↗</span>
             </span>
           </a>
@@ -401,7 +432,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 p-4 sm:p-5 rounded-3xl sm:rounded-full bg-surface/30 hover:bg-surface border border-stroke hover:border-primary/20 transition-all duration-300 group cursor-pointer"
+                className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 p-4 sm:p-5 rounded-3xl sm:rounded-full bg-surface hover:bg-surface-hover border border-stroke hover:border-primary/20 transition-all duration-300 group cursor-pointer"
               >
                 {/* Image */}
                 <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full overflow-hidden shrink-0 border border-stroke/40">
@@ -513,7 +544,7 @@ export default function Home() {
             {/* Stat 1 */}
             <div className="space-y-1 sm:space-y-2">
               <span className="block text-3xl sm:text-5xl font-bold text-text-primary font-mono tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                15+
+                <span className="stat-count" data-target="15">0</span>+
               </span>
               <span className="block text-[10px] sm:text-xs uppercase tracking-widest text-muted font-medium">Years Experience</span>
             </div>
@@ -521,7 +552,7 @@ export default function Home() {
             {/* Stat 2 */}
             <div className="space-y-1 sm:space-y-2">
               <span className="block text-3xl sm:text-5xl font-bold text-text-primary font-mono tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                120+
+                <span className="stat-count" data-target="120">0</span>+
               </span>
               <span className="block text-[10px] sm:text-xs uppercase tracking-widest text-muted font-medium">Projects Done</span>
             </div>
@@ -529,7 +560,7 @@ export default function Home() {
             {/* Stat 3 */}
             <div className="space-y-1 sm:space-y-2">
               <span className="block text-3xl sm:text-5xl font-bold text-text-primary font-mono tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                100%
+                <span className="stat-count" data-target="100">0</span>%
               </span>
               <span className="block text-[10px] sm:text-xs uppercase tracking-widest text-muted font-medium">Client Satisfaction</span>
             </div>
@@ -556,8 +587,8 @@ export default function Home() {
         </div>
 
         {/* Marquee Text */}
-        <div className="w-full relative overflow-hidden py-3 sm:py-4 z-10 border-y border-white/10 bg-black/40 backdrop-blur-sm">
-          <div ref={marqueeRef} className="whitespace-nowrap inline-flex gap-8 text-[24px] sm:text-5xl md:text-6xl font-bold tracking-widest uppercase text-primary/10 select-none">
+        <div className="w-full relative overflow-hidden py-3 sm:py-4 z-10 border-y border-stroke/30 bg-white">
+          <div ref={marqueeRef} className="whitespace-nowrap inline-flex gap-8 text-[24px] sm:text-5xl md:text-6xl font-bold tracking-widest uppercase text-primary/50 select-none">
             {Array.from({ length: 15 }).map((_, i) => (
               <span key={i}>WE BUILD BEST • VPZ BUILDERS •</span>
             ))}
