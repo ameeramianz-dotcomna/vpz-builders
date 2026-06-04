@@ -485,12 +485,11 @@ export default function Home() {
             muted 
             loop 
             playsInline
-            className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-30 mix-blend-screen"
+            className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-35"
+            style={{ filter: 'contrast(1.25) saturate(1.1) brightness(1.05)' }}
           />
-          {/* Grid Overlay */}
-          <div className="absolute inset-0 dark-grid-overlay opacity-50 z-10 pointer-events-none" />
           {/* Theme Tint Overlay matching Sleek Deep Navy Blue background */}
-          <div className="absolute inset-0 bg-[#0B0E14]/65 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-[#0B0E14]/45 z-10 pointer-events-none" />
           {/* Bottom Gradient Fade */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0B0E14] to-transparent z-10" />
         </div>
@@ -531,7 +530,7 @@ export default function Home() {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 sm:gap-3">
-          <span className="text-[8px] text-slate-400 uppercase tracking-[0.25em] font-light">SCROLL</span>
+          <span className="text-[8px] text-slate-400 uppercase tracking-[0.25em] font-light">scroll to explore</span>
           <div className="w-[1px] h-8 sm:h-10 bg-white/10 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-4 bg-primary animate-scroll-down" />
           </div>
@@ -782,12 +781,11 @@ export default function Home() {
             muted 
             loop 
             playsInline
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-25"
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-30"
+            style={{ filter: 'contrast(1.25) saturate(1.1) brightness(1.05)' }}
           />
-          {/* Grid Overlay */}
-          <div className="absolute inset-0 dark-grid-overlay opacity-50 z-10 pointer-events-none" />
           {/* Heavy Dark Overlay */}
-          <div className="absolute inset-0 bg-black/60 z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
         </div>
 
         {/* Marquee Text */}
